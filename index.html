@@ -1067,6 +1067,148 @@
             }
         }
 
+        /* --- INFRA SHOWCASE --- */
+        .infra-showcase {
+            max-width: 1400px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+        }
+
+        .infra-banner {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.5s ease;
+        }
+
+        .infra-banner:hover {
+            transform: scale(1.01);
+        }
+
+        .infra-banner-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.35);
+            z-index: 0;
+        }
+
+        .infra-banner-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(255, 107, 53, 0.15) 100%);
+            z-index: 1;
+        }
+
+        .infra-banner-content {
+            position: relative;
+            z-index: 2;
+            padding: 4rem;
+            max-width: 650px;
+        }
+
+        .infra-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #ff6b35;
+            margin-bottom: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .infra-banner-content h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-family: 'HelveticaLocal', sans-serif;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .infra-banner-content p {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .infra-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .infra-stat {
+            text-align: left;
+        }
+
+        .infra-stat-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .infra-stat-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.5;
+        }
+
+        .infra-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: white;
+            color: #000;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .infra-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 255, 255, 0.15);
+        }
+
+        .infra-cta .infra-arrow {
+            width: 22px;
+            height: 22px;
+            background: #ff6b35;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .infra-banner {
+                min-height: 350px;
+            }
+
+            .infra-banner-content {
+                padding: 2.5rem;
+            }
+
+            .infra-stats {
+                gap: 1.5rem;
+            }
+        }
+
         /* --- FOOTER --- */
         .site-footer {
             background: radial-gradient(circle at top, rgba(255, 255, 255, 0.05), #000);
@@ -2076,6 +2218,7 @@
                 <li><a href="#">Accueil</a></li>
                 <li><a href="#about">À propos</a></li>
                 <li><a href="projects.html">Projets</a></li>
+                <li><a href="infrastructure.html">Infra</a></li>
             </ul>
             <a href="contact.html" class="cta-button" aria-label="Go to contact page">
                 <span class="cta-text">Me contacter</span>
@@ -3034,6 +3177,38 @@
     </section>
 -->
 
+    <!-- ===== INFRA SHOWCASE ===== -->
+    <section class="infra-showcase reveal">
+        <a href="infrastructure.html" class="infra-banner" style="text-decoration: none; color: white;">
+            <img src="images/grafana-dashboard-english.webp" alt="Grafana Dashboard" class="infra-banner-bg">
+            <div class="infra-banner-overlay"></div>
+            <div class="infra-banner-content">
+                <span class="infra-tag">HomeLab & DevOps</span>
+                <h2>Mon Infrastructure Serveur</h2>
+                <p>Un serveur domestique complet : Docker, monitoring Grafana, reverse proxy sécurisé et stratégie de
+                    défense multi-couche.</p>
+                <div class="infra-stats">
+                    <div class="infra-stat">
+                        <span class="infra-stat-value">99.9%</span>
+                        <span class="infra-stat-label">Uptime</span>
+                    </div>
+                    <div class="infra-stat">
+                        <span class="infra-stat-value">10+</span>
+                        <span class="infra-stat-label">Services</span>
+                    </div>
+                    <div class="infra-stat">
+                        <span class="infra-stat-value">24/7</span>
+                        <span class="infra-stat-label">Monitoring</span>
+                    </div>
+                </div>
+                <span class="infra-cta">
+                    Découvrir l'infrastructure
+                    <span class="infra-arrow">→</span>
+                </span>
+            </div>
+        </a>
+    </section>
+
     <!-- Liquid Glass Button Container -->
     <div id="glass-button-container">
         <span class="glass-button-text">Contact</span>
@@ -3236,6 +3411,7 @@
                     <a href="#">Accueil</a>
                     <a href="#about">À propos</a>
                     <a href="#projects">Projets</a>
+                    <a href="infrastructure.html">Infra</a>
                     <a href="contact.html">Contact</a>
                 </div>
 

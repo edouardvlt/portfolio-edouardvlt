@@ -81,8 +81,8 @@
         nav {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            padding: 1rem 2rem;
+            align-items: center;
+            padding: 1.5rem 1rem;
             max-width: 1400px;
             margin: 0 auto;
             width: 100%;
@@ -97,11 +97,11 @@
             font-size: 1.2rem;
             font-weight: 600;
             letter-spacing: 1px;
-            margin-top: -1rem;
+            flex-shrink: 0;
         }
 
         .logo img {
-            height: 75px;
+            height: clamp(40px, 5vw, 65px);
             width: auto;
             display: block;
         }
@@ -110,7 +110,10 @@
             display: flex;
             gap: 2.5rem;
             list-style: none;
-            margin-top: 1rem;
+            margin: 0;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .nav-links a {
@@ -118,13 +121,14 @@
             text-decoration: none;
             font-family: 'AlroLocal', sans-serif;
             font-weight: 700;
-            padding: 0.6rem 1.2rem;
+            font-size: 0.9rem;
+            padding: 0.55rem 1.1rem;
             border-radius: 12px;
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .nav-links a:hover,
@@ -138,14 +142,21 @@
         .cta-button {
             background: white;
             color: #ff6b35;
-            padding: 0.8rem 1.8rem;
+            padding: 0.7rem 1.5rem;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
+            font-size: 0.9rem;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
             transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+
+        .cta-text {
+            margin-bottom: 2px;
+            line-height: 1;
         }
 
         .cta-button:hover {
@@ -573,6 +584,7 @@
             <li><a href="index.html">Accueil</a></li>
             <li><a href="index.html#about">À propos</a></li>
             <li><a href="#" class="active">Projets</a></li>
+            <li><a href="infrastructure.html">Infra</a></li>
         </ul>
 
         <a href="contact.html" class="cta-button" aria-label="Go to contact page">
@@ -589,7 +601,8 @@
         <a href="index.html" class="mobile-nav-link" style="transition-delay: 0.1s;">Accueil</a>
         <a href="index.html#about" class="mobile-nav-link" style="transition-delay: 0.2s;">À propos</a>
         <a href="#" class="mobile-nav-link active" style="color: #ff6b35; transition-delay: 0.3s;">Projets</a>
-        <a href="contact.html" class="mobile-nav-link" style="transition-delay: 0.4s;">Me contacter</a>
+        <a href="infrastructure.html" class="mobile-nav-link" style="transition-delay: 0.4s;">Infra</a>
+        <a href="contact.html" class="mobile-nav-link" style="transition-delay: 0.5s;">Me contacter</a>
     </div>
 
     <header class="page-header">

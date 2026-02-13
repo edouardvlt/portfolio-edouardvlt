@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeLab & Infrastructure - Edouard Vallet</title>
+    <meta name="description" content="Portfolio Infrastructure SysAdmin & DevOps - Monitoring, Docker, Sécurité">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- FontAwesome (Icônes) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Mermaid JS (Diagrammes) -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8', // Cyan clair
+                            500: '#0ea5e9', // Cyan standard
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                            950: '#082f49', // Fond très sombre
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-950 text-slate-200 antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-panel border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <i class="fa-solid fa-server text-brand-400 text-2xl mr-3"></i>
+                    <span class="font-bold text-xl tracking-tight">Edouard.Lab</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#stack"
+                            class="hover:text-brand-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Stack</a>
+                        <a href="#architecture"
+                            class="hover:text-brand-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Architecture</a>
+                        <a href="#monitoring"
+                            class="hover:text-brand-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Monitoring</a>
+                        <a href="#security"
+                            class="hover:text-brand-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Sécurité</a>
+                    </div>
+                </div>
+                <div>
+                    <a href="https://github.com/ton-user" target="_blank"
+                        class="bg-brand-600 hover:bg-brand-500 text-white px-4 py-2 rounded-full text-sm font-bold transition-all shadow-lg shadow-brand-500/20">
+                        <i class="fa-brands fa-github mr-2"></i>GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 overflow-hidden">
+        <!-- Background Glow -->
+        <div
+            class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-brand-500/20 rounded-full blur-[120px] -z-10">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div
+                class="inline-flex items-center px-3 py-1 rounded-full border border-brand-500/30 bg-brand-500/10 text-brand-400 text-sm font-mono mb-6">
+                <span class="flex h-2 w-2 rounded-full bg-brand-400 mr-2 animate-pulse"></span>
+                System & Network Administrator
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6">
+                Infrastructure <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-cyan-200">HomeLab</span>
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-slate-400">
+                Une infrastructure de virtualisation complète hébergée sur micro-serveur.
+                Sécurisée, monitorée et automatisée via Docker.
+            </p>
+
+            <div class="mt-10 flex justify-center gap-4">
+                <div class="flex flex-col items-center p-4 glass-panel rounded-xl min-w-[120px]">
+                    <span class="text-2xl font-bold text-white">99.9%</span>
+                    <span class="text-xs text-slate-400 uppercase tracking-wider">Uptime</span>
+                </div>
+                <div class="flex flex-col items-center p-4 glass-panel rounded-xl min-w-[120px]">
+                    <span class="text-2xl font-bold text-white">4 Go</span>
+                    <span class="text-xs text-slate-400 uppercase tracking-wider">RAM Opti.</span>
+                </div>
+                <div class="flex flex-col items-center p-4 glass-panel rounded-xl min-w-[120px]">
+                    <span class="text-2xl font-bold text-white">10+</span>
+                    <span class="text-xs text-slate-400 uppercase tracking-wider">Services</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stack Technique -->
+    <section id="stack" class="py-20 bg-slate-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-white mb-12 text-center">Tech Stack</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+
+                <!-- Card Item -->
+                <div
+                    class="p-6 glass-panel rounded-xl flex flex-col items-center justify-center hover:border-brand-500/50 transition-colors group">
+                    <i
+                        class="fa-brands fa-docker text-4xl text-blue-500 mb-3 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-semibold">Docker</span>
+                </div>
+                <div
+                    class="p-6 glass-panel rounded-xl flex flex-col items-center justify-center hover:border-brand-500/50 transition-colors group">
+                    <i
+                        class="fa-brands fa-ubuntu text-4xl text-orange-500 mb-3 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-semibold">Ubuntu Server</span>
+                </div>
+                <div
+                    class="p-6 glass-panel rounded-xl flex flex-col items-center justify-center hover:border-brand-500/50 transition-colors group">
+                    <i
+                        class="fa-solid fa-shield-halved text-4xl text-orange-400 mb-3 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-semibold">Cloudflare</span>
+                </div>
+                <div
+                    class="p-6 glass-panel rounded-xl flex flex-col items-center justify-center hover:border-brand-500/50 transition-colors group">
+                    <i
+                        class="fa-solid fa-network-wired text-4xl text-green-500 mb-3 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-semibold">Nginx Proxy Mgr</span>
+                </div>
+                <div
+                    class="p-6 glass-panel rounded-xl flex flex-col items-center justify-center hover:border-brand-500/50 transition-colors group">
+                    <i
+                        class="fa-solid fa-chart-line text-4xl text-orange-600 mb-3 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-semibold">Grafana</span>
+                </div>
+                <div
+                    class="p-6 glass-panel rounded-xl flex flex-col items-center justify-center hover:border-brand-500/50 transition-colors group">
+                    <i
+                        class="fa-solid fa-heart-pulse text-4xl text-green-400 mb-3 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-semibold">Uptime Kuma</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white">Architecture Réseau</h2>
+                <p class="mt-4 text-slate-400">Flux de données sécurisé, du WAN jusqu'aux conteneurs Docker.</p>
+            </div>
+
+            <div class="glass-panel p-8 rounded-2xl overflow-x-auto">
+                <div class="mermaid flex justify-center">
+                    graph TD
+                    %% Styles
+                    classDef internet fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#fff;
+                    classDef home fill:#1e293b,stroke:#22c55e,stroke-width:2px,color:#fff;
+                    classDef docker fill:#0c4a6e,stroke:#f59e0b,stroke-width:2px,color:#fff;
+
+                    User((Utilisateur)) -->|HTTPS 443| CF[Cloudflare]
+
+                    subgraph WAN [Internet & Sécurité]
+                    CF -->|SSL Strict| Box[Freebox Ultra]
+                    end
+
+                    subgraph LAN [Home Lab Acer]
+                    Box -->|Port Forwarding| UFW[Pare-Feu UFW]
+                    UFW -->|Reverse Proxy| NPM[Nginx Proxy Manager]
+
+                    subgraph Docker [Zone Conteneurs]
+                    NPM -->|Internal 172.17.x.x| Portainer[Portainer]
+                    NPM -->|Internal 172.17.x.x| Grafana
+                    NPM -->|Internal 172.17.x.x| Kuma[Uptime Kuma]
+                    NPM -->|Internal 172.17.x.x| Dozzle[Logs]
+                    end
+                    end
+
+                    class CF,Box internet;
+                    class UFW,NPM home;
+                    class Portainer,Grafana,Kuma,Dozzle docker;
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Monitoring & Screenshots -->
+    <section id="monitoring" class="py-20 bg-slate-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-6">Observabilité Totale</h2>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-brand-400 mt-1 mr-3"></i>
+                            <div>
+                                <strong class="text-white block">Grafana & Prometheus</strong>
+                                <span class="text-slate-400 text-sm">Métriques long terme, surveillance CPU/RAM/Disque
+                                    optimisée pour 4 Go de RAM.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-brand-400 mt-1 mr-3"></i>
+                            <div>
+                                <strong class="text-white block">Logs en Temps Réel (Dozzle)</strong>
+                                <span class="text-slate-400 text-sm">Visualisation instantanée des logs conteneurs via
+                                    interface Web sécurisée.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-brand-400 mt-1 mr-3"></i>
+                            <div>
+                                <strong class="text-white block">Alerting Proactif</strong>
+                                <span class="text-slate-400 text-sm">Notifications SMTP via iCloud en cas
+                                    d'indisponibilité d'un service.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Screenshot Placeholder -->
+                <div class="relative group">
+                    <div
+                        class="absolute -inset-1 bg-gradient-to-r from-brand-400 to-blue-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200">
+                    </div>
+                    <div class="relative glass-panel p-2 rounded-lg">
+                        <!-- Remplace src par ton image asset/dashboard.png -->
+                        <img src="images/grafana-dashboard.webp" alt="Grafana Dashboard"
+                            class="rounded w-full shadow-2xl border border-slate-700">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Section -->
+    <section id="security" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-br from-brand-900/50 to-slate-900 p-8 rounded-3xl border border-brand-500/20">
+                <div class="md:flex justify-between items-center">
+                    <div class="md:w-2/3">
+                        <h2 class="text-3xl font-bold text-white mb-4">Stratégie de Défense</h2>
+                        <p class="text-slate-300 mb-6">
+                            L'accès aux interfaces critiques (Portainer, Dozzle) est strictement verrouillé.
+                        </p>
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div class="bg-slate-950/50 p-4 rounded-lg border border-slate-800">
+                                <h3 class="font-bold text-brand-400 mb-1"><i class="fa-solid fa-lock mr-2"></i>DNS
+                                    Challenge</h3>
+                                <p class="text-sm text-slate-400">Certificat SSL Wildcard (*.edouard-vallet.fr) généré
+                                    sans ouvrir le port 80, via l'API Cloudflare.</p>
+                            </div>
+                            <div class="bg-slate-950/50 p-4 rounded-lg border border-slate-800">
+                                <h3 class="font-bold text-brand-400 mb-1"><i
+                                        class="fa-solid fa-user-shield mr-2"></i>Access Lists</h3>
+                                <p class="text-sm text-slate-400">Authentification Nginx supplémentaire devant les
+                                    services sensibles.</p>
+                            </div>
+                            <div class="bg-slate-950/50 p-4 rounded-lg border border-slate-800">
+                                <h3 class="font-bold text-brand-400 mb-1"><i
+                                        class="fa-solid fa-network-wired mr-2"></i>Isolation Réseau</h3>
+                                <p class="text-sm text-slate-400">Flux Portainer forcé en HTTP interne (port 9000)
+                                    derrière le SSL du Proxy pour éviter les conflits.</p>
+                            </div>
+                            <div class="bg-slate-950/50 p-4 rounded-lg border border-slate-800">
+                                <h3 class="font-bold text-brand-400 mb-1"><i
+                                        class="fa-brands fa-cloudflare mr-2"></i>Full Strict</h3>
+                                <p class="text-sm text-slate-400">Chiffrement de bout en bout forcé entre le client,
+                                    Cloudflare et le serveur Acer.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/3 mt-8 md:mt-0 flex justify-center">
+                        <i class="fa-solid fa-shield-cat text-[150px] text-brand-500/20"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-950 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <span class="text-xl font-bold text-white">Edouard Vallet</span>
+                <p class="text-slate-500 text-sm mt-1">Étudiant Bachelor Informatique & Futur Alternant</p>
+            </div>
+            <div class="flex space-x-6">
+                <a href="#" class="text-slate-400 hover:text-white transition-colors"><i
+                        class="fa-brands fa-github text-2xl"></i></a>
+                <a href="#" class="text-slate-400 hover:text-white transition-colors"><i
+                        class="fa-brands fa-linkedin text-2xl"></i></a>
+                <a href="#" class="text-slate-400 hover:text-white transition-colors"><i
+                        class="fa-solid fa-envelope text-2xl"></i></a>
+            </div>
+        </div>
+        <div class="text-center mt-8 text-slate-600 text-sm">
+            &copy; 2026 Lab Project. Built with Tailwind & Docker.
+        </div>
+    </footer>
+
+    <script>
+        // Init Mermaid with Dark Theme
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            securityLevel: 'loose',
+        });
+    </script>
+</body>
+
+</html>

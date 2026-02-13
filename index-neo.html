@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edouard Vallet | Admin Système & Réseau</title>
+
+    <meta name="description"
+        content="Edouard Vallet – Admin Système, Réseau et Cloud. Solutions robustes et sécurisées.">
+    <meta property="og:title" content="Edouard Vallet – Admin Système & Réseau">
+    <meta property="og:description"
+        content="Administration Système, Réseau et Cloud. Solutions robustes et sécurisées.">
+    <meta property="og:image"
+        content="https://edouardvlt.github.io/portfolio-edouardvlt/images/Background-portfolio.webp">
+    <meta property="og:url" content="https://edouardvlt.github.io/portfolio-edouardvlt/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image"
+        content="https://edouardvlt.github.io/portfolio-edouardvlt/images/Background-portfolio.webp">
+    <meta name="theme-color" content="#121212">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'neo-yellow': '#FBFF48',
+                        'neo-pink': '#FF70A6',
+                        'neo-blue': '#3B82F6',
+                        'neo-green': '#33FF57',
+                        'neo-purple': '#A855F7',
+                        'neo-orange': '#FF9F1C',
+                        'neo-red': '#FF2A2A',
+                        'neo-white': '#FFFDF5',
+                        'neo-black': '#121212',
+                    },
+                    fontFamily: {
+                        'display': ['"Space Grotesk"', 'sans-serif'],
+                        'mono': ['"JetBrains Mono"', 'monospace'],
+                    },
+                    boxShadow: {
+                        'hard': '4px 4px 0px 0px #000',
+                        'hard-sm': '2px 2px 0px 0px #000',
+                        'hard-lg': '8px 8px 0px 0px #000',
+                        'hard-xl': '12px 12px 0px 0px #000',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            cursor: none;
+            background-color: #FFFDF5;
+            background-image:
+                radial-gradient(#000 1px, transparent 1px),
+                linear-gradient(to right, #e5e5e5 1px, transparent 1px),
+                linear-gradient(to bottom, #e5e5e5 1px, transparent 1px);
+            background-size: 40px 40px, 100px 100px, 100px 100px;
+        }
+
+        #cursor {
+            pointer-events: none;
+            position: fixed;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: width 0.2s, height 0.2s, background-color 0.2s, transform 0.1s;
+        }
+
+        .marquee-container {
+            overflow: hidden;
+        }
+
+        .marquee-content {
+            display: flex;
+            animation: scroll 40s linear infinite;
+            width: max-content;
+        }
+
+        .marquee-container:hover .marquee-content {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .glitch-hover:hover {
+            animation: glitch-anim 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+            color: #FF2A2A;
+        }
+
+        @keyframes glitch-anim {
+            0% {
+                transform: translate(0)
+            }
+
+            20% {
+                transform: translate(-2px, 2px)
+            }
+
+            40% {
+                transform: translate(-2px, -2px)
+            }
+
+            60% {
+                transform: translate(2px, 2px)
+            }
+
+            80% {
+                transform: translate(2px, -2px)
+            }
+
+            100% {
+                transform: translate(0)
+            }
+        }
+
+        /* Splide overrides */
+        .splide__track {
+            padding: 0 !important;
+        }
+
+        .splide__list {
+            padding: 0;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .project-info-mini {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            padding: 2rem 1rem 1rem;
+            z-index: 2;
+        }
+
+        .project-info-mini h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: white;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .project-info-mini p {
+            margin: 0;
+            font-size: 0.8rem;
+            color: #ff6b35;
+            font-weight: 600;
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(2px);
+            z-index: 2;
+        }
+
+        .project-overlay span {
+            color: #fff;
+            border: 1px solid #ff6b35;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            background: rgba(255, 107, 53, 0.2);
+        }
+
+        .portfolio-item:hover .project-overlay {
+            opacity: 1;
+        }
+
+        /* Modal */
+        .project-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            padding: 2rem;
+        }
+
+        .project-modal.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-glass-content {
+            background: rgba(20, 20, 20, 0.95);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            width: 100%;
+            max-width: 1000px;
+            max-height: 90vh;
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            box-shadow: 0 0 50px rgba(255, 107, 53, 0.15);
+            transform: scale(0.95) translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            overflow-y: auto;
+        }
+
+        .project-modal.show .modal-glass-content {
+            transform: scale(1) translateY(0);
+        }
+
+        #close-modal-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: color 0.3s;
+        }
+
+        #close-modal-btn:hover {
+            color: #ff6b35;
+        }
+
+        .modal-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3rem;
+        }
+
+        .modal-image-col img {
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-text-col {
+            display: flex;
+            flex-direction: column;
+            color: white;
+            padding-top: 1rem;
+        }
+
+        #modal-title {
+            font-size: 2.5rem;
+            margin: 0 0 0.5rem 0;
+            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(90deg, #fff, #aaa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .modal-stack {
+            font-size: 0.9rem;
+            color: #ff6b35;
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .modal-section {
+            margin-bottom: 2rem;
+        }
+
+        .modal-section h5 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .feeling-section {
+            background: rgba(255, 107, 53, 0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 3px solid #ff6b35;
+        }
+
+        .feeling-section h5 {
+            color: #ff6b35;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .modal-body p {
+            line-height: 1.7;
+            font-size: 1rem;
+            color: #ddd;
+        }
+
+        .modal-cta {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.8rem 2rem;
+            background: #ff6b35;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .modal-cta:hover {
+            background: #e55a2b;
+            transform: translateX(5px);
+        }
+
+        @media(max-width: 900px) {
+            .modal-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            #modal-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media(max-width: 768px) {
+            body {
+                cursor: auto;
+            }
+
+            #cursor {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="text-neo-black font-display antialiased selection:bg-neo-black selection:text-neo-yellow">
+
+    <div id="cursor" class="w-6 h-6 bg-white rounded-full border-2 border-black hidden lg:block"></div>
+    <div class="fixed top-0 left-0 h-2 bg-neo-green z-[60] border-b-2 border-black" id="progressBar" style="width: 0%">
+    </div>
+
+    <!-- NAV -->
+    <nav class="fixed top-0 w-full z-50 px-4 py-4 pointer-events-none">
+        <div class="max-w-7xl mx-auto flex justify-between items-center pointer-events-auto">
+            <a href="#"
+                class="bg-neo-white border-2 border-black px-4 py-1 text-2xl font-black shadow-hard hover:bg-neo-yellow transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none cursor-hover">
+                EDOUARD.vlt
+            </a>
+            <div class="hidden md:flex gap-4 bg-white border-2 border-black p-2 shadow-hard">
+                <a href="#about"
+                    class="px-3 py-1 font-mono font-bold text-sm hover:bg-black hover:text-white transition-colors cursor-hover">/ABOUT</a>
+                <a href="#skills"
+                    class="px-3 py-1 font-mono font-bold text-sm hover:bg-black hover:text-white transition-colors cursor-hover">/SKILLS</a>
+                <a href="#experience"
+                    class="px-3 py-1 font-mono font-bold text-sm hover:bg-black hover:text-white transition-colors cursor-hover">/PARCOURS</a>
+                <a href="#projects"
+                    class="px-3 py-1 font-mono font-bold text-sm hover:bg-black hover:text-white transition-colors cursor-hover">/PROJETS</a>
+                <a href="contact.html"
+                    class="px-3 py-1 font-mono font-bold text-sm bg-neo-yellow border border-black hover:bg-neo-pink transition-colors cursor-hover">CONTACT</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section
+        class="min-h-screen flex flex-col justify-center items-center px-4 pt-20 relative overflow-hidden border-b-4 border-black">
+        <div
+            class="absolute top-1/3 left-[10%] w-16 h-16 bg-neo-blue border-4 border-black shadow-hard animate-bounce hidden lg:block rotate-12">
+        </div>
+        <div
+            class="absolute bottom-1/3 right-[10%] w-24 h-24 bg-neo-pink rounded-full border-4 border-black shadow-hard hidden lg:block animate-pulse">
+        </div>
+        <div class="absolute top-20 right-20 text-9xl opacity-5 font-black select-none pointer-events-none">INFRA</div>
+
+        <div class="relative z-10 text-center max-w-5xl">
+            <div
+                class="inline-block bg-neo-white border-2 border-black px-4 py-1 mb-6 shadow-hard rotate-[-2deg] reveal">
+                <span class="font-mono font-bold text-neo-green bg-black px-2 mr-2">●</span>
+                <span class="font-mono font-bold">SYSTEM STATUS: ONLINE</span>
+            </div>
+
+            <h1
+                class="text-[13vw] md:text-[10vw] leading-[0.8] font-black uppercase tracking-tighter mb-6 reveal mix-blend-darken">
+                ADMIN<br>
+                <span class="text-white" style="-webkit-text-stroke: 3px black;">SYSTÈME</span>
+            </h1>
+
+            <p
+                class="font-mono text-lg md:text-2xl max-w-2xl mx-auto mb-10 bg-neo-yellow border-2 border-black p-4 shadow-hard reveal rotate-1">
+                Je conçois des infrastructures robustes et sécurisées.<br>
+                <b>Linux • Docker • Cloud • DevOps</b>
+            </p>
+
+            <div class="flex flex-col md:flex-row justify-center gap-6 reveal">
+                <a href="#projects"
+                    class="bg-black text-white border-2 border-black px-10 py-5 text-xl font-bold shadow-hard hover:bg-neo-green hover:text-black hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all cursor-hover">
+                    VOIR MES PROJETS
+                </a>
+                <a href="contact.html"
+                    class="bg-neo-white text-black border-2 border-black px-10 py-5 text-xl font-bold shadow-hard hover:bg-neo-pink hover:text-black hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all cursor-hover flex items-center justify-center gap-2">
+                    <i class="ri-mail-line"></i> ME CONTACTER
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="border-b-4 border-black bg-neo-blue py-3 relative z-20">
+        <div class="marquee-container font-mono font-bold text-2xl text-white">
+            <div class="marquee-content">
+                /// RECHERCHE ALTERNANCE /// ADMIN SYSTÈME & RÉSEAU /// CLOUD /// DEVOPS /// DOCKER /// SÉCURITÉ ///
+                MONITORING /// RECHERCHE ALTERNANCE /// ADMIN SYSTÈME & RÉSEAU /// CLOUD ///
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-24 px-4 max-w-7xl mx-auto border-x-4 border-black bg-white my-12 shadow-hard-lg">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+            <div class="md:col-span-4 reveal">
+                <div class="aspect-square bg-gray-200 border-4 border-black relative shadow-hard overflow-hidden group">
+                    <img src="images/Photo-header.webp" alt="Edouard Vallet"
+                        class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                    <span
+                        class="absolute top-2 left-2 bg-neo-red text-white px-2 font-mono text-xs border border-black z-10">AVATAR.JPG</span>
+                </div>
+            </div>
+            <div class="md:col-span-8 flex flex-col justify-center reveal">
+                <h2 class="text-6xl font-black uppercase mb-6">Qui suis-je ?</h2>
+                <p class="font-mono text-xl leading-relaxed mb-6">
+                    Je suis Edouard. Passionné d'informatique, j'explore les technologies du <span
+                        class="bg-neo-yellow px-1 border border-black">système</span>, du réseau et du cloud.
+                </p>
+                <p class="font-mono text-lg mb-8 text-gray-600 border-l-4 border-neo-purple pl-4">
+                    > Spécialisé en Administration Système, Réseau et Cloud.<br>
+                    > Actuellement en Bachelor Informatique.<br>
+                    > En recherche d'alternance pour Octobre 2026.
+                </p>
+                <div class="flex gap-4 flex-wrap">
+                    <div class="bg-neo-black text-white px-4 py-2 font-mono text-sm border-2 border-transparent">
+                        📍 LOCATION: NANTES, FR
+                    </div>
+                    <div class="bg-neo-green text-black px-4 py-2 font-mono text-sm border-2 border-black">
+                        🟢 STATUS: RECHERCHE ALTERNANCE
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECH STACK -->
+    <section id="skills" class="py-20 bg-neo-black text-neo-white border-y-4 border-black relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20"
+            style="background-image: linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px); background-size: 40px 40px;">
+        </div>
+        <div class="max-w-[1400px] mx-auto px-4 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 border-b-4 border-white pb-4">
+                <h2 class="text-6xl md:text-8xl font-black uppercase text-white tracking-tighter">
+                    TECH<span class="text-neo-green">_STACK</span>
+                </h2>
+                <div class="flex items-center gap-2 mb-2 md:mb-4">
+                    <div class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+                    <p class="font-mono text-neo-green text-sm font-bold">/// SYSTEM_OPTIMIZED</p>
+                </div>
+            </div>
+            <div class="flex flex-wrap justify-center md:justify-start">
+                <div
+                    class="group w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-[12.5%] h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-white transition-all duration-0 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2">
+                    <div class="text-neo-green group-hover:text-black font-mono text-xs mb-1 opacity-50">>_ OS</div>
+                    <div class="text-white group-hover:text-black font-black font-display text-xl uppercase">LINUX</div>
+                </div>
+                <div
+                    class="group w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-[12.5%] h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-yellow transition-all duration-0 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2">
+                    <div class="text-neo-green group-hover:text-black font-mono text-xs mb-1 opacity-50">>_ OS</div>
+                    <div class="text-white group-hover:text-black font-black font-display text-xl uppercase">WINDOWS
+                    </div>
+                </div>
+                <div
+                    class="group w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-[12.5%] h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-blue transition-all duration-0 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2">
+                    <div class="text-neo-green group-hover:text-black font-mono text-xs mb-1 opacity-50">>_ CONTAINER
+                    </div>
+                    <div class="text-white group-hover:text-black font-black font-display text-xl uppercase">DOCKER
+                    </div>
+                </div>
+                <div
+                    class="group w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-[12.5%] h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-green transition-all duration-0 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2">
+                    <div class="text-neo-green group-hover:text-black font-mono text-xs mb-1 opacity-50">>_ VIRTUAL
+                    </div>
+                    <div class="text-white group-hover:text-black font-black font-display text-xl uppercase">VMWARE
+                    </div>
+                </div>
+                <div
+                    class="group w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-[12.5%] h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-pink transition-all duration-0 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2">
+                    <div class="text-neo-green group-hover:text-black font-mono text-xs mb-1 opacity-50">>_ LANGUAGE
+                    </div>
+                    <div class="text-white group-hover:text-black font-black font-display text-xl uppercase">PYTHON
+                    </div>
+                </div>
+                <div
+                    class="group w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-[12.5%] h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-purple transition-all duration-0 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2">
+                    <div class="text-neo-green group-hover:text-black font-mono text-xs mb-1 opacity-50">>_ SHELL</div>
+                    <div class="text-white group-hover:text-black font-black font-display text-xl uppercase">BASH</div>
+                </div>
+                <div
+                    class="group w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-[12.5%] h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-orange transition-all duration-0 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2">
+                    <div class="text-neo-green group-hover:text-black font-mono text-xs mb-1 opacity-50">>_ LANGUAGE
+                    </div>
+                    <div class="text-white group-hover:text-black font-black font-display text-xl uppercase">C</div>
+                </div>
+                <div
+                    class="group w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-[12.5%] h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-white transition-all duration-0 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2">
+                    <div class="text-neo-green group-hover:text-black font-mono text-xs mb-1 opacity-50">>_ LANGUAGE
+                    </div>
+                    <div class="text-white group-hover:text-black font-black font-display text-xl uppercase">GO</div>
+                </div>
+                <div
+                    class="group w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-[12.5%] h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-yellow transition-all duration-0 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2">
+                    <div class="text-neo-green group-hover:text-black font-mono text-xs mb-1 opacity-50">>_ FRONTEND
+                    </div>
+                    <div class="text-white group-hover:text-black font-black font-display text-xl uppercase">JS</div>
+                </div>
+                <div
+                    class="group w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-[12.5%] h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-blue transition-all duration-0 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2">
+                    <div class="text-neo-green group-hover:text-black font-mono text-xs mb-1 opacity-50">>_ BACKEND
+                    </div>
+                    <div class="text-white group-hover:text-black font-black font-display text-xl uppercase">NODE.JS
+                    </div>
+                </div>
+                <div
+                    class="group w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-[12.5%] h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-green transition-all duration-0 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2">
+                    <div class="text-neo-green group-hover:text-black font-mono text-xs mb-1 opacity-50">>_ MONITORING
+                    </div>
+                    <div class="text-white group-hover:text-black font-black font-display text-xl uppercase">GRAFANA
+                    </div>
+                </div>
+                <div
+                    class="group w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-[12.5%] h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-pink transition-all duration-0 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2">
+                    <div class="text-neo-green group-hover:text-black font-mono text-xs mb-1 opacity-50">>_ VERSION
+                    </div>
+                    <div class="text-white group-hover:text-black font-black font-display text-xl uppercase">GIT</div>
+                </div>
+                <div
+                    class="group w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-[12.5%] h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-purple transition-all duration-0 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2">
+                    <div class="text-neo-green group-hover:text-black font-mono text-xs mb-1 opacity-50">>_ DATA</div>
+                    <div class="text-white group-hover:text-black font-black font-display text-xl uppercase">MySQL</div>
+                </div>
+                <div
+                    class="group w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-[12.5%] h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-orange transition-all duration-0 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2">
+                    <div class="text-neo-green group-hover:text-black font-mono text-xs mb-1 opacity-50">>_ FIREWALL
+                    </div>
+                    <div class="text-white group-hover:text-black font-black font-display text-lg uppercase">OPNsense
+                    </div>
+                </div>
+                <div
+                    class="group w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-[12.5%] h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-white transition-all duration-0 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2">
+                    <div class="text-neo-green group-hover:text-black font-mono text-xs mb-1 opacity-50">>_ WEB</div>
+                    <div class="text-white group-hover:text-black font-black font-display text-xl uppercase">APACHE
+                    </div>
+                </div>
+                <div
+                    class="group w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-[12.5%] h-24 border-r-2 border-b-2 border-white/20 bg-neo-black hover:bg-neo-green transition-all duration-0 hover:z-10 relative cursor-hover flex flex-col items-center justify-center p-2">
+                    <div class="text-neo-green group-hover:text-black font-mono text-xs mb-1 opacity-50">>_ SECURE</div>
+                    <div class="text-white group-hover:text-black font-black font-display text-xl uppercase">SSH</div>
+                </div>
+            </div>
+            <div class="border-t-4 border-white mt-8 pt-4 flex justify-between font-mono text-xs text-gray-500">
+                <span>TOTAL_NODES: 16</span>
+                <span>STACK_TYPE: SYSADMIN</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE LOG -->
+    <section id="experience" class="py-24 px-4 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-12 border-b-4 border-black pb-4 reveal">
+            <h2 class="text-6xl md:text-8xl font-black uppercase tracking-tighter">Experience<span
+                    class="text-neo-purple">_Log</span></h2>
+            <p class="font-mono text-sm text-gray-500">&gt; Chronologie</p>
+        </div>
+        <div class="relative border-l-4 border-black ml-4 md:ml-12 space-y-12">
+            <div class="reveal relative pl-8 md:pl-16">
+                <div class="absolute -left-[14px] top-2 w-6 h-6 bg-neo-blue border-4 border-black"></div>
+                <div class="bg-white border-4 border-black p-6 shadow-hard hover:shadow-hard-xl transition-all">
+                    <div
+                        class="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-dashed border-gray-300 pb-4 mb-4">
+                        <h3 class="text-2xl md:text-3xl font-black uppercase">Bachelor Informatique SRC</h3>
+                        <span class="font-mono font-bold bg-neo-black text-white px-2 py-1 mt-2 md:mt-0">2024 -
+                            PRÉSENT</span>
+                    </div>
+                    <p class="font-mono text-xl mb-2 text-neo-blue font-bold">@ SUP DE VINCI & ESGI</p>
+                    <ul class="list-disc list-inside font-mono text-gray-700 space-y-1">
+                        <li>Système, Réseaux et Cloud</li>
+                        <li>Virtualisation et Cloud Computing</li>
+                        <li>Projets professionnels techniques avancés</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="reveal relative pl-8 md:pl-16">
+                <div class="absolute -left-[14px] top-2 w-6 h-6 bg-neo-yellow border-4 border-black"></div>
+                <div class="bg-white border-4 border-black p-6 shadow-hard hover:shadow-hard-xl transition-all">
+                    <div
+                        class="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-dashed border-gray-300 pb-4 mb-4">
+                        <h3 class="text-2xl md:text-3xl font-black uppercase">Hackathon 48h</h3>
+                        <span class="font-mono font-bold bg-neo-black text-white px-2 py-1 mt-2 md:mt-0">MAI 2025</span>
+                    </div>
+                    <p class="font-mono text-xl mb-2 text-neo-yellow font-bold">@ ESGI NANTES</p>
+                    <ul class="list-disc list-inside font-mono text-gray-700 space-y-1">
+                        <li>Outil d'analyse pour le secteur médical</li>
+                        <li>Connexion d'API de données</li>
+                        <li>Développement agile et collaboration intensive</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="reveal relative pl-8 md:pl-16">
+                <div class="absolute -left-[14px] top-2 w-6 h-6 bg-neo-green border-4 border-black"></div>
+                <div class="bg-white border-4 border-black p-6 shadow-hard hover:shadow-hard-xl transition-all">
+                    <div
+                        class="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-dashed border-gray-300 pb-4 mb-4">
+                        <h3 class="text-2xl md:text-3xl font-black uppercase">Stage Développement Web</h3>
+                        <span class="font-mono font-bold bg-neo-black text-white px-2 py-1 mt-2 md:mt-0">JUIN - JUIL
+                            2025</span>
+                    </div>
+                    <p class="font-mono text-xl mb-2 text-neo-green font-bold">@ OPTIMIX, LILLE</p>
+                    <ul class="list-disc list-inside font-mono text-gray-700 space-y-1">
+                        <li>Création d'un site internet pour une micro-entreprise</li>
+                        <li>Tests et débogage avant mise en production</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="reveal relative pl-8 md:pl-16">
+                <div class="absolute -left-[14px] top-2 w-6 h-6 bg-neo-orange border-4 border-black"></div>
+                <div class="bg-white border-4 border-black p-6 shadow-hard hover:shadow-hard-xl transition-all">
+                    <div
+                        class="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-dashed border-gray-300 pb-4 mb-4">
+                        <h3 class="text-2xl md:text-3xl font-black uppercase">Projet CCNA</h3>
+                        <span class="font-mono font-bold bg-neo-black text-white px-2 py-1 mt-2 md:mt-0">JANVIER
+                            2026</span>
+                    </div>
+                    <p class="font-mono text-xl mb-2 text-neo-orange font-bold">@ SUP DE VINCI, NANTES</p>
+                    <ul class="list-disc list-inside font-mono text-gray-700 space-y-1">
+                        <li>Architecture multi-sites (VLANs, Routage IPv4/IPv6, NAT/PAT)</li>
+                        <li>Sécurisation par firewall OPNsense sous VMware ESXi</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="reveal relative pl-8 md:pl-16">
+                <div class="absolute -left-[14px] top-2 w-6 h-6 bg-neo-pink border-4 border-black"></div>
+                <div class="bg-white border-4 border-black p-6 shadow-hard hover:shadow-hard-xl transition-all">
+                    <div
+                        class="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-dashed border-gray-300 pb-4 mb-4">
+                        <h3 class="text-2xl md:text-3xl font-black uppercase">Stage Support Informatique</h3>
+                        <span class="font-mono font-bold bg-neo-black text-white px-2 py-1 mt-2 md:mt-0">JANVIER
+                            2023</span>
+                    </div>
+                    <p class="font-mono text-xl mb-2 text-neo-pink font-bold">@ SOLUCE INFORMATIQUE, PORNIC</p>
+                    <ul class="list-disc list-inside font-mono text-gray-700 space-y-1">
+                        <li>Installation de logiciels de sécurité en entreprise</li>
+                        <li>Dépannage informatique et assistance technique</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="reveal relative pl-8 md:pl-16">
+                <div class="absolute -left-[14px] top-2 w-6 h-6 bg-neo-red border-4 border-black"></div>
+                <div class="bg-white border-4 border-black p-6 shadow-hard hover:shadow-hard-xl transition-all">
+                    <div
+                        class="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-dashed border-gray-300 pb-4 mb-4">
+                        <h3 class="text-2xl md:text-3xl font-black uppercase">Baccalauréat Général</h3>
+                        <span class="font-mono font-bold bg-neo-black text-white px-2 py-1 mt-2 md:mt-0">2021 -
+                            2024</span>
+                    </div>
+                    <p class="font-mono text-xl mb-2 text-neo-red font-bold">@ LYCÉE NOTRE-DAME D'ESPÉRANCE</p>
+                    <ul class="list-disc list-inside font-mono text-gray-700 space-y-1">
+                        <li>Spécialités Mathématiques et SES</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="py-24 px-4 bg-neo-black border-y-4 border-black">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 border-b-4 border-white pb-4 reveal">
+                <h2 class="text-6xl md:text-8xl font-black uppercase tracking-tighter text-white">Selected<span
+                        class="text-neo-orange">_Works</span></h2>
+                <a href="projects.html"
+                    class="font-mono text-neo-orange text-sm font-bold hover:underline mt-4 md:mt-0">VOIR TOUT →</a>
+            </div>
+            <div class="splide" id="projects-carousel">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+                            <div class="portfolio-item project-card border-4 border-white" style="height:300px;"
+                                data-title="Optimix Web"
+                                data-desc="Site vitrine développé pour une micro-entreprise locale."
+                                data-feeling="Mon premier vrai projet client. Une vraie fierté de voir le site en ligne !"
+                                data-stack="HTML5 • CSS3 • JavaScript" data-image="images/optimix.webp" data-link="#">
+                                <img src="images/optimix.webp" alt="Optimix">
+                                <div class="project-info-mini">
+                                    <h3>Optimix</h3>
+                                    <p>Dév. Web</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="portfolio-item project-card border-4 border-white" style="height:300px;"
+                                data-title="Devine l'Article"
+                                data-desc="Jeu interactif inspiré de Pédantix. Deviner un article Wikipédia."
+                                data-feeling="Projet collaboratif utilisant les APIs Wikipedia, Datamuse et MyMemory."
+                                data-stack="JS Vanilla • Wikipedia API • Flask"
+                                data-image="images/devine-l-article.webp" data-link="#"><img
+                                    src="images/devine-l-article.webp" alt="Devine l'Article">
+                                <div class="project-info-mini">
+                                    <h3>Devine l'Article</h3>
+                                    <p>Dév. Web</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="portfolio-item project-card border-4 border-white" style="height:300px;"
+                                data-title="Portfolio" data-desc="La plateforme sur laquelle vous naviguez !"
+                                data-feeling="Pas de template, tout à la main. GSAP, glassmorphism, effet premium."
+                                data-stack="HTML5 • CSS3 • GSAP • Three.js"
+                                data-image="images/Background-portfolio.webp" data-link="#"><img
+                                    src="images/Background-portfolio.webp" alt="Portfolio">
+                                <div class="project-info-mini">
+                                    <h3>Portfolio</h3>
+                                    <p>Personal Branding</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="portfolio-item project-card border-4 border-white" style="height:300px;"
+                                data-title="Site Hive"
+                                data-desc="Site collaboratif pour un festival : check-list, suivi des sacs."
+                                data-feeling="Un projet né d'un besoin entre potes pour ne rien oublier en festival."
+                                data-stack="HTML5 • CSS3 • JavaScript" data-image="images/site-hive.webp" data-link="#">
+                                <img src="images/site-hive.webp" alt="Site Hive">
+                                <div class="project-info-mini">
+                                    <h3>Site Hive</h3>
+                                    <p>Dév. Web</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="portfolio-item project-card border-4 border-white" style="height:300px;"
+                                data-title="Home Server Acer"
+                                data-desc="Serveur domestique : Docker, SSH/Wireguard, HTTPS Let's Encrypt."
+                                data-feeling="Monitoring thermique, alertes Discord, sauvegarde 3-2-1 automatisée."
+                                data-stack="Ubuntu Server • Docker • Bash • S3"
+                                data-image="images/grafana-dashboard-english.webp" data-link="#"><img
+                                    src="images/grafana-dashboard-english.webp" alt="Home Server">
+                                <div class="project-info-mini">
+                                    <h3>Serveur Acer</h3>
+                                    <p>Infra & DevOps</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="portfolio-item project-card border-4 border-white" style="height:300px;"
+                                data-title="Hytale Dashboard"
+                                data-desc="PoC d'infrastructure web temps réel pour Hytale."
+                                data-feeling="Gros travail sur l'esthétique Fantasy mixée au Next.js 15."
+                                data-stack="Next.js 15 • Socket.io • Tailwind v4" data-image="images/hytale.webp"
+                                data-link="#"><img src="images/hytale.webp" alt="Hytale Dashboard">
+                                <div class="project-info-mini">
+                                    <h3>Hytale Dashboard</h3>
+                                    <p>Dév. Web</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="portfolio-item project-card border-4 border-white" style="height:300px;"
+                                data-title="Portfolio Croquis"
+                                data-desc="Portfolio pour ma meilleure amie — exposer ses croquis et projets artistiques."
+                                data-feeling="Gratifiant de mettre mes compétences au service d'un projet créatif."
+                                data-stack="HTML5 • CSS3 • React.js" data-image="images/site-portfolio-croquis.webp"
+                                data-link="#"><img src="images/site-portfolio-croquis.webp" alt="Portfolio Croquis">
+                                <div class="project-info-mini">
+                                    <h3>Portfolio Croquis</h3>
+                                    <p>Art & Design</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="portfolio-item project-card border-4 border-white" style="height:300px;"
+                                data-title="ApplyTrack API"
+                                data-desc="API REST pour le suivi des candidatures. JWT et MySQL."
+                                data-feeling="Un projet pur backend pour maîtriser l'architecture REST."
+                                data-stack="Node.js • Express • MySQL • JWT"
+                                data-image="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop"
+                                data-link="#"><img
+                                    src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop"
+                                    alt="ApplyTrack API">
+                                <div class="project-info-mini">
+                                    <h3>ApplyTrack API</h3>
+                                    <p>Backend</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECT MODAL -->
+    <div id="project-modal" class="project-modal">
+        <div class="modal-glass-content">
+            <button id="close-modal-btn">&times;</button>
+            <div class="modal-grid">
+                <div class="modal-image-col"><img id="modal-img" src="" alt="Project Preview">
+                    <div class="modal-links"><a href="#" id="modal-link" target="_blank" class="modal-cta">Visiter le
+                            site →</a></div>
+                </div>
+                <div class="modal-text-col">
+                    <h2 id="modal-title">Project</h2>
+                    <div class="modal-stack" id="modal-stack">TECH • STACK</div>
+                    <div class="modal-body">
+                        <div class="modal-section">
+                            <h5>Le Projet</h5>
+                            <p id="modal-desc"></p>
+                        </div>
+                        <div class="modal-section feeling-section">
+                            <h5>♥ Mon Ressenti</h5>
+                            <p id="modal-feeling"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- INFRA SHOWCASE -->
+    <section class="py-24 px-4 max-w-7xl mx-auto reveal">
+        <a href="infrastructure.html"
+            class="block relative bg-white border-4 border-black shadow-hard-lg overflow-hidden group hover:shadow-hard-xl transition-all"
+            style="text-decoration:none;color:inherit;">
+            <img src="images/grafana-dashboard-english.webp" alt="Grafana Dashboard"
+                class="w-full h-64 md:h-96 object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+            <div class="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-all"></div>
+            <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-12">
+                <span
+                    class="font-mono text-xs bg-neo-green text-black px-3 py-1 border border-black w-fit mb-4 font-bold">HOMELAB
+                    & DEVOPS</span>
+                <h2 class="text-3xl md:text-5xl font-black text-white uppercase mb-2">Mon Infrastructure Serveur</h2>
+                <p class="font-mono text-white/80 max-w-xl mb-6">Docker, monitoring Grafana, reverse proxy sécurisé et
+                    défense multi-couche.</p>
+                <div class="flex gap-8 mb-4">
+                    <div><span class="text-2xl font-black text-neo-green">99.9%</span><br><span
+                            class="font-mono text-xs text-white/60">Uptime</span></div>
+                    <div><span class="text-2xl font-black text-neo-green">10+</span><br><span
+                            class="font-mono text-xs text-white/60">Services</span></div>
+                    <div><span class="text-2xl font-black text-neo-green">24/7</span><br><span
+                            class="font-mono text-xs text-white/60">Monitoring</span></div>
+                </div>
+                <span class="font-mono font-bold text-neo-yellow text-sm">DÉCOUVRIR L'INFRASTRUCTURE →</span>
+            </div>
+        </a>
+    </section>
+
+    <!-- GITHUB STATS -->
+    <section class="py-20 bg-neo-black border-y-4 border-black text-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 border-b-4 border-white pb-4 reveal">
+                <h2 class="text-6xl md:text-8xl font-black uppercase tracking-tighter">CODING<span
+                        class="text-neo-green">_STATS</span></h2>
+                <a href="https://github.com/Edouardvlt" target="_blank"
+                    class="font-mono text-neo-green text-sm font-bold hover:underline mt-4 md:mt-0">@Edouardvlt →</a>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 uppercase reveal">
+                <div
+                    class="border-2 border-neo-green/30 bg-neo-black/60 p-4 hover:border-neo-green transition-colors shadow-[4px_4px_0_rgba(51,255,87,0.1)]">
+                    <div class="text-[9px] font-mono text-neo-green mb-1 tracking-widest opacity-70">REPOSITORIES</div>
+                    <div id="repos-count" class="text-white font-black text-3xl tracking-tighter">--</div>
+                </div>
+                <div
+                    class="border-2 border-neo-green/30 bg-neo-black/60 p-4 hover:border-neo-green transition-colors shadow-[4px_4px_0_rgba(51,255,87,0.1)]">
+                    <div class="text-[9px] font-mono text-neo-green mb-1 tracking-widest opacity-70">FOLLOWERS</div>
+                    <div id="followers-count" class="text-white font-black text-3xl tracking-tighter">--</div>
+                </div>
+                <div
+                    class="border-2 border-neo-green/30 bg-neo-black/60 p-4 hover:border-neo-green transition-colors shadow-[4px_4px_0_rgba(51,255,87,0.1)]">
+                    <div class="text-[9px] font-mono text-neo-green mb-1 tracking-widest opacity-70">FOLLOWING</div>
+                    <div id="following-count" class="text-white font-black text-3xl tracking-tighter">--</div>
+                </div>
+                <div
+                    class="border-2 border-neo-green/30 bg-neo-black/60 p-4 hover:border-neo-green transition-colors shadow-[4px_4px_0_rgba(51,255,87,0.1)]">
+                    <div class="text-[9px] font-mono text-neo-green mb-1 tracking-widest opacity-70">JOINED</div>
+                    <div id="created-at" class="text-white font-black text-xl tracking-tighter mt-1 leading-none">--
+                    </div>
+                </div>
+            </div>
+            <div class="reveal border-2 border-neo-green/20 overflow-hidden">
+                <img src="https://ghchart.rshah.org/33FF57/Edouardvlt" alt="GitHub Contributions"
+                    class="w-full invert opacity-80 hover:opacity-100 transition-opacity">
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-neo-black text-white border-t-8 border-neo-yellow">
+        <div class="max-w-7xl mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div>
+                <h3 class="text-4xl font-black uppercase mb-4">EDOUARD<br><span class="text-neo-yellow">VALLET</span>
+                </h3>
+                <p class="font-mono text-gray-400 text-sm">Admin Système, Réseau et Cloud.<br>Fiabilité et Performance.
+                </p>
+            </div>
+            <div class="font-mono">
+                <h4 class="font-bold text-neo-green uppercase mb-4 text-sm">Navigation</h4>
+                <div class="flex flex-col gap-2 text-sm">
+                    <a href="#" class="hover:text-neo-yellow transition-colors">/ACCUEIL</a>
+                    <a href="#about" class="hover:text-neo-yellow transition-colors">/ABOUT</a>
+                    <a href="#projects" class="hover:text-neo-yellow transition-colors">/PROJETS</a>
+                    <a href="infrastructure.html" class="hover:text-neo-yellow transition-colors">/INFRASTRUCTURE</a>
+                    <a href="contact.html" class="hover:text-neo-yellow transition-colors">/CONTACT</a>
+                </div>
+            </div>
+            <div class="font-mono">
+                <h4 class="font-bold text-neo-green uppercase mb-4 text-sm">Connect</h4>
+                <div class="flex flex-col gap-2 text-sm">
+                    <a href="https://github.com/Edouardvlt" target="_blank"
+                        class="hover:text-neo-yellow transition-colors">GitHub →</a>
+                    <a href="https://linkedin.com/in/edouard-vallet/" target="_blank"
+                        class="hover:text-neo-yellow transition-colors">LinkedIn →</a>
+                    <a href="mailto:edouard.vlt@icloud.com"
+                        class="hover:text-neo-yellow transition-colors">edouard.vlt@icloud.com</a>
+                </div>
+            </div>
+        </div>
+        <div class="border-t-2 border-white/10 py-6 text-center font-mono text-xs text-gray-500">© 2026 EDOUARD VALLET •
+            ADMINISTRATEUR SYSTÈME RÉSEAU ET CLOUD</div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-auto-scroll@0.5.3/dist/js/splide-extension-auto-scroll.min.js"></script>
+    <script>
+        // Progress bar
+        window.addEventListener('scroll', () => {
+            const h = document.documentElement;
+            document.getElementById('progressBar').style.width = ((h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100) + '%';
+        });
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        if (cursor) {
+            document.addEventListener('mousemove', (e) => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; cursor.style.transform = 'translate(-50%, -50%)'; });
+            document.querySelectorAll('.cursor-hover, a, button, input, textarea').forEach(el => {
+                el.addEventListener('mouseenter', () => { cursor.style.width = '60px'; cursor.style.height = '60px'; cursor.style.backgroundColor = '#FBFF48'; cursor.style.mixBlendMode = 'normal'; cursor.style.border = '2px solid black'; });
+                el.addEventListener('mouseleave', () => { cursor.style.width = '24px'; cursor.style.height = '24px'; cursor.style.backgroundColor = '#fff'; cursor.style.mixBlendMode = 'difference'; cursor.style.border = 'none'; });
+            });
+        }
+        // Reveal on scroll
+        const ro = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); ro.unobserve(e.target); } }); }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+        // Splide Carousel
+        const splide = new Splide('#projects-carousel', { type: 'loop', drag: 'free', focus: 0, perPage: 3, gap: '2rem', pagination: false, arrows: false, autoScroll: { speed: 1, pauseOnHover: true, pauseOnFocus: false }, breakpoints: { 1024: { perPage: 3 }, 768: { perPage: 2 }, 640: { perPage: 1 } } });
+        splide.mount(window.splide.Extensions);
+        // Modal
+        const modal = document.getElementById('project-modal');
+        document.querySelectorAll('.project-card').forEach(c => { c.addEventListener('click', () => { document.getElementById('modal-title').textContent = c.dataset.title; document.getElementById('modal-desc').textContent = c.dataset.desc; document.getElementById('modal-feeling').textContent = c.dataset.feeling; document.getElementById('modal-stack').textContent = c.dataset.stack; document.getElementById('modal-img').src = c.dataset.image; const ml = document.getElementById('modal-link'); if (!c.dataset.link || c.dataset.link === '#') { ml.style.display = 'none'; } else { ml.style.display = 'inline-block'; ml.href = c.dataset.link; } modal.classList.add('show'); document.body.style.overflow = 'hidden'; }); });
+        document.getElementById('close-modal-btn').addEventListener('click', () => { modal.classList.remove('show'); document.body.style.overflow = ''; });
+        modal.addEventListener('click', (e) => { if (e.target === modal) { modal.classList.remove('show'); document.body.style.overflow = ''; } });
+        // GitHub Stats
+        fetch('https://api.github.com/users/Edouardvlt').then(r => r.json()).then(d => {
+            document.getElementById('repos-count').textContent = d.public_repos || '--';
+            document.getElementById('followers-count').textContent = d.followers || '--';
+            document.getElementById('following-count').textContent = d.following || '--';
+            const dt = new Date(d.created_at); document.getElementById('created-at').textContent = dt.toLocaleDateString('fr-FR', { month: 'short', year: 'numeric' }).toUpperCase();
+        }).catch(() => { });
+    </script>
+</body>
+
+</html>
